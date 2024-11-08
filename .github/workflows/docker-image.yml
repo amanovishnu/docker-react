@@ -7,14 +7,11 @@ on:
     branches: [ "master" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile.dev -t docker-react
     - name: Run Tests
-      run: docker run -e CI=true docker-react npm run test
+      run: docker run docker-react npm run test -- --coverage
